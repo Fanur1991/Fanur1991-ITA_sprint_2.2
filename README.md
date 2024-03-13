@@ -1,6 +1,6 @@
 # Prueba de Funcionamiento de la Función Throttle
 
-Este proyecto tiene como objetivo probar el funcionamiento de la función debounce, que se utiliza para controlar la frecuencia de las llamadas a una función durante eventos frecuentes.
+Este proyecto tiene como objetivo probar el funcionamiento de la función throttle, que se utiliza para controlar la frecuencia de las llamadas a una función durante eventos frecuentes.
 
 ## Tecnologías
 
@@ -39,7 +39,7 @@ Ejecuta pruebas utilizando Jest para verificar el correcto funcionamiento de la 
 
 ## Licencia
 
-Este proyecto se distribuye bajo la licencia Apache. Consulta el archivo `LICENSE` para más detalles.
+Este proyecto se distribuye bajo la licencia Apache2.0. Consulta el archivo `LICENSE` para más detalles.
 
 ---
 
