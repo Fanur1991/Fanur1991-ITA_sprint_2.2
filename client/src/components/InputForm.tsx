@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Flex, Input, Switch, Typography } from 'antd';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 
@@ -33,7 +33,7 @@ const InputForm: React.FC<InputFormProps> = ({
 
   return (
     <Flex justify="center" align="start" gap="large">
-      <Flex justify="center" align="center" gap="large" vertical>
+      <Flex justify="center" align="center" gap="middle" vertical>
         <Input
           value={searchQueryWithThrottle || searchQueryWithoutThrottle}
           onChange={handleInputChange}

@@ -8,9 +8,6 @@ const PATH_DATABASE = './src/data/books.json' || '';
 
 export const getAllBooks = async (): Promise<Book[]> => {
   try {
-    // Aquí es donde se simula el retraso de acceso a la base de datos
-    await new Promise((resolve) => setTimeout(resolve, 200));
-
     if (!PATH_DATABASE) {
       throw new Error('Database path is not defined');
     }
@@ -27,9 +24,6 @@ export const getAllBooks = async (): Promise<Book[]> => {
 
 export const filterBooks = async (searchQuery: string): Promise<Book[]> => {
   try {
-    // Aquí es donde se simula el retraso de acceso a la base de datos
-    await new Promise((resolve) => setTimeout(resolve, 200));
-
     // Leemos los datos de JSON
     const data = await fs.promises.readFile(PATH_DATABASE, 'utf-8');
     const books: Book[] = JSON.parse(data);

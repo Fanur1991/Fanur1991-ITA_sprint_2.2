@@ -1,4 +1,4 @@
-# Prueba de Funcionamiento de la Función Debounce
+# Prueba de Funcionamiento de la Función Throttle
 
 Este proyecto tiene como objetivo probar el funcionamiento de la función debounce, que se utiliza para controlar la frecuencia de las llamadas a una función durante eventos frecuentes.
 

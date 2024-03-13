@@ -32,12 +32,15 @@ const App: React.FC = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        const errorData = await response.json();
+        throw new Error(errorData.message);
       }
 
-      const data: BookType[] = await response.json();
+      const data = await response.json();
 
-      setBooks(data);
+      const books: BookType[] = data.books;
+
+      setBooks(books);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -54,32 +57,33 @@ const App: React.FC = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        const errorData = await response.json();
+        throw new Error(errorData.message);
       }
 
-      const data: BookType[] = await response.json();
+      const data = await response.json();
+
+      const books: BookType[] = data.books;
+
+      console.log(books);
 
       setLoading(false);
-      setBooks(data);
+      setBooks(books);
       setSearchQuery(searchQuery);
       setRequestCount((prevCount) => (searchQuery ? ++prevCount : 0));
-
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const filterBooks = (searchQuery: string, func: (query: string) => void) => {
-    func(searchQuery);
-  };
-
   const filterBooksWithoutThrottle = (searchQuery: string) => {
-    filterBooks(searchQuery, fetchFilteredBooks);
+    console.log('filterBooksWithoutThrottle');
+    fetchFilteredBooks(searchQuery);
   };
 
   const filterBooksWithThrottle = throttle((searchQuery: string) => {
-    filterBooks(searchQuery, fetchFilteredBooks);
+    console.log('filterBooksWithThrottle');
+    fetchFilteredBooks(searchQuery);
   });
 
   return (

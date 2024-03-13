@@ -15,7 +15,7 @@ const fetchAllBooks = (_req, res) => __awaiter(void 0, void 0, void 0, function*
     try {
         const books = yield (0, bookService_1.getAllBooks)();
         if (books.length > 0)
-            res.json(books);
+            res.json({ books: books });
         else
             res.status(404).json({ message: 'Books not found' });
     }
@@ -30,7 +30,7 @@ const fetchFiltredBooks = (req, res) => __awaiter(void 0, void 0, void 0, functi
         const searchQuery = req.query.search;
         const filteredBooks = yield (0, bookService_1.filterBooks)(searchQuery);
         if (filteredBooks.length > 0)
-            res.json(filteredBooks);
+            res.json({ books: filteredBooks });
         else
             res.status(404).json({ message: 'Books not found' });
     }
