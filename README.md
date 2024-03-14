@@ -1,8 +1,8 @@
-# Prueba de Funcionamiento de la Función Throttle
+# Throttle Function Testing
 
-Este proyecto tiene como objetivo probar el funcionamiento de la función throttle, que se utiliza para controlar la frecuencia de las llamadas a una función durante eventos frecuentes.
+This project aims to test the functionality of the throttle function, which is used to control the frequency of calls to a function during frequent events.
 
-## Tecnologías
+## Technologies
 
 ![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
 ![Node.js](https://img.shields.io/badge/-Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white)
@@ -15,32 +15,32 @@ Este proyecto tiene como objetivo probar el funcionamiento de la función thrott
 
 ### `npm run dev`
 
-Ejecuta el proyecto en modo de desarrollo utilizando TypeScript y ESM.
+Run the project in development mode using TypeScript and ESM.
 
 ### `npm run tsc`
 
-Compila los archivos TypeScript a JavaScript.
+Compile TypeScript files to JavaScript.
 
 ### `npm run tsc:watch`
 
-Inicia el compilador TypeScript en modo de observación.
+Start the TypeScript compiler in watch mode.
 
 ### `npm start`
 
-Inicia el servidor y la parte del cliente del proyecto simultáneamente.
+Start the server and the client part of the project simultaneously.
 
 ### `npm run start:cli`
 
-Inicia una interfaz de línea de comandos para interactuar con la aplicación.
+Start a command-line interface to interact with the application.
 
 ### `npm test`
 
-Ejecuta pruebas utilizando Jest para verificar el correcto funcionamiento de la función debounce.
+Run tests using Jest to verify the proper functioning of the throttle function.
 
-## Licencia
+## License
 
-Este proyecto se distribuye bajo la licencia Apache2.0. Consulta el archivo `LICENSE` para más detalles.
+This project is distributed under the Apache 2.0 license.
 
 ---
 
-Desarrollado por [Fanur Khusainov](https://github.com/Fanur1991) con ❤️ y ☕.
+Developed by [Fanur Khusainov](https://www.linkedin.com/in/fanur-khusainov-ab86b2102/) with ❤️ and ☕.
