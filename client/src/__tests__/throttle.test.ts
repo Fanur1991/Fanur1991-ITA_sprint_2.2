@@ -3,7 +3,7 @@ import { throttle } from '../utils/throttle';
 
 jest.useFakeTimers();
 
-describe('La función throttle', () => {
+describe('La función throttle test', () => {
   let delay: number; // Tiempo de espera para el throttle
   let myMockFn: jest.Mock; // Función simulada para realizar el seguimiento de las llamadas
   let throttledFunction: Function; // Función throttle que se va a probar
