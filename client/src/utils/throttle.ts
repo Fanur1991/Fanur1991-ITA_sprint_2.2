@@ -36,7 +36,7 @@
 //   };
 // };
 
-// opcion 3
+//opcion 3
 export const throttle = (callback: (...args: any[]) => void, delay = 1000) => {
   let isPaused: boolean = false;
   let waitingArgs: any = null;

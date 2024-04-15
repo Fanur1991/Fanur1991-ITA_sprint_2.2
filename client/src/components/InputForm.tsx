@@ -17,7 +17,7 @@ const InputForm: React.FC<InputFormProps> = ({
     useState<string>(''); // Estado del texto de entrada sin throttle
   const [searchQueryWithThrottle, setSearchQueryWithThrottle] =
     useState<string>(''); // Estado del texto de entrada con throttle
-  const [turnOnThrottle, setTurnOnThrottle] = useState<boolean>(false);
+  const [turnOnThrottle, setTurnOnThrottle] = useState<boolean>(true);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue: string = event.target.value;

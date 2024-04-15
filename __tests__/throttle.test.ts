@@ -1,5 +1,4 @@
-import { describe, expect, it, beforeEach } from '@jest/globals';
-import { throttle } from '../utils/throttle';
+import {throttle} from '../throttle/throttle'
 
 jest.useFakeTimers();
 
