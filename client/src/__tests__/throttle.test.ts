@@ -15,10 +15,10 @@ describe('La función throttle test', () => {
   });
 
   // Caso 1 ------------------------------------------------------------
-  it('Debería ejecutar una sola vez después de múltiples llamadas durante el retraso', async () => {
+  it('Debería ejecutar una sola vez después de múltiples llamadas durante el retraso', () => {
     // Llama a la función de throttle 10 veces
     for (let i = 0; i < 10; i++) {
-      await throttledFunction();
+      throttledFunction();
     }
 
     // Avanza el tiempo en la cantidad de retraso especificada
@@ -28,7 +28,7 @@ describe('La función throttle test', () => {
     expect(myMockFn).toHaveBeenCalledTimes(1);
 
     // Simula otro llamado y avanza el tiempo
-    await throttledFunction();
+    throttledFunction();
     jest.advanceTimersByTime(delay);
 
     // Verifica que la función se haya llamado una segunda vez
@@ -36,9 +36,9 @@ describe('La función throttle test', () => {
   });
 
   // Caso 2 ------------------------------------------------------------
-  it('Debería hacer dos llamadas a la función de retorno', async () => {
+  it('Debería hacer dos llamadas a la función de retorno', () => {
     for (let i = 0; i < 6; i++) {
-      await throttledFunction();
+      throttledFunction();
       jest.advanceTimersByTime(delay / 6);
     }
 
@@ -51,7 +51,7 @@ describe('La función throttle test', () => {
   });
 
   // Caso 3 ------------------------------------------------------------
-  it('Debería llamar con el último argumento después del retraso de throttle', async () => {
+  it('Debería llamar con el último argumento después del retraso de throttle', () => {
     const arrOfArguments: [string, string, string] = [
       'arg 1',
       'arg 2',
@@ -60,7 +60,7 @@ describe('La función throttle test', () => {
 
     // Llama a la función con diferentes argumentos
     for (const arg of arrOfArguments) {
-      await throttledFunction(arg);
+      throttledFunction(arg);
     }
 
     // Avanza el tiempo en la cantidad de retraso especificada
@@ -76,9 +76,9 @@ describe('La función throttle test', () => {
   });
 
   // Caso 4 ------------------------------------------------------------
-  it('No debería ser llamada antes de que termine el retraso de throttle', async () => {
+  it('No debería ser llamada antes de que termine el retraso de throttle', () => {
     // Llamamos a la función throttle
-    await throttledFunction();
+    throttledFunction();
 
     // Comprobamos que la función no ha sido llamada antes de que termine el retraso
     expect(myMockFn).toHaveBeenCalledTimes(1);
@@ -87,7 +87,7 @@ describe('La función throttle test', () => {
     jest.advanceTimersByTime(delay / 2);
 
     // Llamamos a la función throttle por segunda vez durante el periodo de retraso
-    await throttledFunction();
+    throttledFunction();
 
     // Verificamos que no haya más llamadas hasta ahora
     expect(myMockFn).toHaveBeenCalledTimes(1);
