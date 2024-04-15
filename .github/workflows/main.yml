@@ -34,6 +34,4 @@ jobs:
           npm install react-scripts --save-dev
 
       - name: Run tests
-        run: |
-          cd client
-          npm run test
+        run:  npm run test
