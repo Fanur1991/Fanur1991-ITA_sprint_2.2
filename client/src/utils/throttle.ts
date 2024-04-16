@@ -1,64 +1,79 @@
-// opcion 1
-// export const throttle = (callback: Function, delay: number = 3000) => {
+// Option 1: Basic Throttle
+/**
+ * This version implements the most straightforward form of throttling. It ensures the function is executed immediately on the first call, then prevents further executions until after a specified delay (1000ms by default), resetting the throttle flag thereafter.
+ */
+
+// export const throttle = (callback: Function, delay: number = 1000) => {
 //   let inThrottle: boolean;
 //   return function (this: any) {
 //     const args = arguments;
 //     const context = this;
 //     if (!inThrottle) {
-//       callback.apply(context, args);
-//       inThrottle = true;
-//       setTimeout(() => (inThrottle = false), delay);
+//       callback.apply(context, args); // Execute callback immediately if not within the throttle period.
+//       inThrottle = true; // Set throttle flag.
+//       setTimeout(() => (inThrottle = false), delay); // Reset throttle flag after the delay.
 //     }
 //   };
 // };
 
-// opcion 2
-// export const throttle = (fn: Function, wait: number = 1000) => {
+// Option 2: Improved Throttle with Debounce Logic
+/**
+ * Combines throttling with debouncing capabilities. This implementation allows an immediate execution and then ensures subsequent invocations are debounced until the end of the delay since the last execution. This helps in scenarios where you need to handle continuous input but delay processing, like typing in a search bar.
+ */
+
+// export const throttle = (callback: Function, delay: number = 1000) => {
 //   let inThrottle: boolean,
-//     lastFn: ReturnType<typeof setTimeout>,
+//     lastCallback: ReturnType<typeof setTimeout>,
 //     lastTime: number;
 //   return function (this: any) {
 //     const context = this,
 //       args = arguments;
 //     if (!inThrottle) {
-//       fn.apply(context, args);
+//       // Execute callback immediately if not previously throttled.
+//       callback.apply(context, args);
 //       lastTime = Date.now();
 //       inThrottle = true;
 //     } else {
-//       clearTimeout(lastFn);
-//       lastFn = setTimeout(() => {
-//         if (Date.now() - lastTime >= wait) {
-//           fn.apply(context, args);
+//       // Clear previous delay to debounce the execution.
+//       clearTimeout(lastCallback);
+//       lastCallback = setTimeout(() => {
+//         // Ensure the callback is not executed until after the delay period from the last execution.
+//         if (Date.now() - lastTime >= delay) {
+//           callback.apply(context, args);
 //           lastTime = Date.now();
 //         }
-//       }, Math.max(wait - (Date.now() - lastTime), 0));
+//       }, Math.max(delay - (Date.now() - lastTime), 0));
 //     }
 //   };
 // };
 
-//opcion 3
+// Option 3: Throttle with Queue
+/**
+ * This version queues up the last call to be executed after the delay period if calls continue to arrive during the throttle period. It allows the function to handle continuous changes but ensures the function executes with the most recent arguments only after the throttle delay has expired. This can be useful in scenarios where only the most recent action needs to be taken into account, such as resizing a window or handling the final value of a slider.
+ */
+
 export const throttle = (callback: (...args: any[]) => void, delay = 1000) => {
   let isPaused: boolean = false;
   let waitingArgs: any = null;
   const timeoutFunc = () => {
     if (waitingArgs === null) {
-      isPaused = false;
+      isPaused = false; // Reset the paused state if no queued execution.
     } else {
-      callback.apply(this, waitingArgs);
+      callback.apply(this, waitingArgs); // Execute with the latest arguments.
       waitingArgs = null;
-      setTimeout(timeoutFunc, delay);
+      setTimeout(timeoutFunc, delay); // Queue the next execution, if any.
     }
   };
   return function (this: any, ...args: any[]) {
     if (isPaused) {
-      waitingArgs = args;
+      waitingArgs = args; // Queue the latest arguments if already paused.
       return;
     }
 
-    callback.apply(this, args);
+    callback.apply(this, args); // Execute immediately if not paused.
 
     isPaused = true;
 
-    setTimeout(timeoutFunc, delay);
+    setTimeout(timeoutFunc, delay); // Setup to manage the next execution.
   };
 };

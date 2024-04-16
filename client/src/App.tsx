@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 import { Flex, Form, Typography } from 'antd';
 import InputForm from './components/InputForm';
 import ListForm from './components/ListForm';
@@ -81,10 +81,13 @@ const App: React.FC = () => {
     fetchFilteredBooks(searchQuery);
   };
 
-  const filterBooksWithThrottle = throttle((searchQuery: string) => {
-    console.log('filterBooksWithThrottle');
-    fetchFilteredBooks(searchQuery);
-  });
+  const filterBooksWithThrottle = useCallback(
+    throttle((searchQuery: string) => {
+      console.log('filterBooksWithThrottle');
+      fetchFilteredBooks(searchQuery);
+    }, 800),
+    []
+  );
 
   return (
     <div className="App">

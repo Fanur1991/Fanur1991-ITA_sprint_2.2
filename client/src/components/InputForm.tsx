@@ -19,6 +19,8 @@ const InputForm: React.FC<InputFormProps> = ({
     useState<string>(''); // Estado del texto de entrada con throttle
   const [turnOnThrottle, setTurnOnThrottle] = useState<boolean>(true);
 
+  console.log('Create InputForm');
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue: string = event.target.value;
 
@@ -36,6 +38,7 @@ const InputForm: React.FC<InputFormProps> = ({
       <Flex justify="center" align="center" gap="middle" vertical>
         <Input
           value={searchQueryWithThrottle || searchQueryWithoutThrottle}
+          // value={searchQueryWithThrottle}
           onChange={handleInputChange}
           style={{ width: 500 }}
           size="large"
@@ -65,7 +68,7 @@ const InputForm: React.FC<InputFormProps> = ({
             onChange={setTurnOnThrottle}
           ></Switch>
           <Typography.Text>
-            Turn <span style={{ fontWeight: 500 }}>throttle</span> on
+            Turn <span style={{ fontWeight: 500 }}>throttle</span> off
           </Typography.Text>
         </Flex>
       </Flex>
