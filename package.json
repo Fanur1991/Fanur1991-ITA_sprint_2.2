@@ -12,7 +12,7 @@
     "start:client": "cd client && npm start",
     "start": "concurrently \"npm run start:server\" \"npm run start:client\"",
     "test:client": "cd client && npm test",
-    "test": "jest"
+    "test": "cd client && npm run test"
   },
   "repository": {
     "type": "git",

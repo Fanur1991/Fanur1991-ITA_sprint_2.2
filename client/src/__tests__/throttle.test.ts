@@ -1,11 +1,11 @@
-import {throttle} from '../throttle/throttle'
+import { throttle } from '../utils/throttle';
 
 jest.useFakeTimers();
 
 describe('La función throttle test', () => {
-  let delay: number; // Tiempo de espera para el throttle
-  let myMockFn: jest.Mock; // Función simulada para realizar el seguimiento de las llamadas
-  let throttledFunction: Function; // Función throttle que se va a probar
+  let delay: number;
+  let myMockFn: jest.Mock;
+  let throttledFunction: Function;
 
   beforeEach(() => {
     delay = 500; // Configura el tiempo de espera en 500 milisegundos
@@ -41,11 +41,10 @@ describe('La función throttle test', () => {
       jest.advanceTimersByTime(delay / 6);
     }
 
-    jest.runOnlyPendingTimers(); // Esto debería llamar a callback si hay llamadas pendientes
+    jest.runOnlyPendingTimers();
 
-    jest.runAllTimers(); // Avanzar manualmente los timers simulados
+    jest.runAllTimers();
 
-    // Verifica que la función simulada se haya llamado dos veces
     expect(myMockFn).toHaveBeenCalledTimes(2);
   });
 
@@ -57,18 +56,14 @@ describe('La función throttle test', () => {
       'arg 3',
     ];
 
-    // Llama a la función con diferentes argumentos
     for (const arg of arrOfArguments) {
       throttledFunction(arg);
     }
 
-    // Avanza el tiempo en la cantidad de retraso especificada
     jest.advanceTimersByTime(delay);
 
-    // Comprueba que la función simulada se haya llamado 2 veсes
     expect(myMockFn).toHaveBeenCalledTimes(2);
 
-    // Comprueba que se pasó el último argumento durante la llamada
     expect(myMockFn).toHaveBeenLastCalledWith(
       arrOfArguments[arrOfArguments.length - 1]
     );
@@ -76,25 +71,18 @@ describe('La función throttle test', () => {
 
   // Caso 4 ------------------------------------------------------------
   it('No debería ser llamada antes de que termine el retraso de throttle', () => {
-    // Llamamos a la función throttle
     throttledFunction();
 
-    // Comprobamos que la función no ha sido llamada antes de que termine el retraso
     expect(myMockFn).toHaveBeenCalledTimes(1);
 
-    // Avanzamos el tiempo en la mitad del retraso
     jest.advanceTimersByTime(delay / 2);
 
-    // Llamamos a la función throttle por segunda vez durante el periodo de retraso
     throttledFunction();
 
-    // Verificamos que no haya más llamadas hasta ahora
     expect(myMockFn).toHaveBeenCalledTimes(1);
 
-    // Avanzamos el tiempo en la otra mitad del retraso
     jest.advanceTimersByTime(delay / 2);
 
-    // Comprobamos que la función ha sido llamada después de que termine completamente el retraso
     expect(myMockFn).toHaveBeenCalledTimes(2);
   });
 });

@@ -57,23 +57,23 @@ export const throttle = (callback: (...args: any[]) => void, delay = 1000) => {
   let waitingArgs: any = null;
   const timeoutFunc = () => {
     if (waitingArgs === null) {
-      isPaused = false; // Reset the paused state if no queued execution.
+      isPaused = false; 
     } else {
-      callback.apply(this, waitingArgs); // Execute with the latest arguments.
+      callback.apply(this, waitingArgs);
       waitingArgs = null;
-      setTimeout(timeoutFunc, delay); // Queue the next execution, if any.
+      setTimeout(timeoutFunc, delay);
     }
   };
   return function (this: any, ...args: any[]) {
     if (isPaused) {
-      waitingArgs = args; // Queue the latest arguments if already paused.
+      waitingArgs = args;
       return;
     }
 
-    callback.apply(this, args); // Execute immediately if not paused.
+    callback.apply(this, args);
 
     isPaused = true;
 
-    setTimeout(timeoutFunc, delay); // Setup to manage the next execution.
+    setTimeout(timeoutFunc, delay);
   };
 };
