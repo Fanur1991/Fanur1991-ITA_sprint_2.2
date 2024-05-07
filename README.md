@@ -13,29 +13,36 @@ This project aims to test the functionality of the throttle function, which is u
 
 ## Scripts
 
-### `npm run dev`
+### Steps to install the dependencies
 
-Run the project in development mode using TypeScript and ESM.
+```
+git clone https://github.com/Fanur1991/IT-Academy-sprint_2.2-Throttle-React-TS-Jest-Nodejs
+cd IT-Academy-sprint_2.2-Throttle-React-TS-Jest-Nodejs
+npm install
 
-### `npm run tsc`
+cd client
+npm install (in frontend part)
+```
 
-Compile TypeScript files to JavaScript.
+### Start the server and the client part of the project simultaneously.
 
-### `npm run tsc:watch`
+```
+cd IT-Academy-sprint_2.2-Throttle-React-TS-Jest-Nodejs
+npm run start
+```
 
-Start the TypeScript compiler in watch mode.
+### Start a command-line interface to interact with the application.
 
-### `npm start`
+```
+npm run start:cli
+```
 
-Start the server and the client part of the project simultaneously.
+### Steps to test the proper functioning of the debounce function
 
-### `npm run start:cli`
-
-Start a command-line interface to interact with the application.
-
-### `npm test`
-
-Run tests using Jest to verify the proper functioning of the throttle function.
+```
+cd IT-Academy-sprint_2.2-Throttle-React-TS-Jest-Nodejs
+npm run test
+```
 
 ## License
 
